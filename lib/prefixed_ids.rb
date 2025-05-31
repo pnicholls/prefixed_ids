@@ -30,7 +30,7 @@ module PrefixedIds
 
   def self.register_prefix(prefix, model:)
     if (existing_model = PrefixedIds.models[prefix]) && existing_model != model
-      raise Error, "Prefix #{prefix} already defined for model #{model}"
+      Rails.logger.error "Prefix #{prefix} already defined for model #{model}, existing model: #{existing_model} model: #{model}"
     end
 
     PrefixedIds.models[prefix] = model
